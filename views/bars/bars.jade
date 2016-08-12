@@ -1,0 +1,28 @@
+extends ../layout
+
+block content
+
+    script.
+        var search = function() {
+            window.location = '/bars/' + document.getElementById('search').value
+        }
+        
+    .page-header
+        h3 Bars near #{loc}
+        .input-group(style="width:50%")
+            input.form-control#search(type="text" value="#{loc}")
+            span.input-group-btn
+                button.btn.btn-primary(onclick="search()") Go
+                
+    each bar in bars
+        .row(style="margin-bottom: 10px;")
+            .col-md-2
+                img.img-responsive.img-circle(src="#{bar.img}")
+            .col-md-8
+                h5 
+                    |#{bar.name}     
+                    if !bar.imgoing
+                        a.btn-xs.btn-primary(role="button" href="/going/#{bar.name}/#{loc}") I'm going [#{bar.going}] 
+                    else
+                        a.btn-xs.btn-danger(role="button" href="/going/#{bar.name}/#{loc}") I'm not going [#{bar.going}] 
+                p #{bar.desc}

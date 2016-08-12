@@ -1,0 +1,18 @@
+extends layout
+
+block content
+
+  script.
+        var search = function() {
+            window.location = '/bars/' + document.getElementById('search').value
+        }
+        
+  
+  .text-center(style="margin-top:100px")
+    h1 Plan Your Night
+    h4 Search for bars nearby and show, that you are going there tonight!
+    h4 Powered by Yelp
+    .input-group(style="width:500px; margin:0 auto")
+      input.form-control#search(type="text" placeholder="Enter your location")
+      span.input-group-btn
+        button.btn.btn-primary(onclick="search()") Go
